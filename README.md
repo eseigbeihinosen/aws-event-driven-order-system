@@ -147,15 +147,7 @@ This design keeps the database private while still allowing Lambda and EC2 to ac
 
 ## Screenshots
 
-### 1. Architecture Diagram
-
-Shows the complete event-driven solution.
-
-![Architecture](screenshots/architecture.png)
-
----
-
-### 2. Amazon VPC
+### 1. Amazon VPC
 
 Custom VPC with public and private subnets.
 
@@ -163,7 +155,7 @@ Custom VPC with public and private subnets.
 
 ---
 
-### 3. Amazon RDS Database
+### 2. Amazon RDS Database
 
 Amazon RDS MySQL instance used to store orders.
 
@@ -171,7 +163,7 @@ Amazon RDS MySQL instance used to store orders.
 
 ---
 
-### 4. AWS Secrets Manager
+### 3. AWS Secrets Manager
 
 Database credentials are stored securely inside Secrets Manager instead of being hardcoded.
 
@@ -179,7 +171,7 @@ Database credentials are stored securely inside Secrets Manager instead of being
 
 ---
 
-### 5. Lambda Function
+### 4. Lambda Function
 
 The OrderLambda function processes incoming API requests.
 
@@ -187,7 +179,7 @@ The OrderLambda function processes incoming API requests.
 
 ---
 
-### 6. Lambda Environment Variables
+### 5. Lambda Environment Variables
 
 The Lambda function uses environment variables to store configuration such as:
 
@@ -200,7 +192,7 @@ The Lambda function uses environment variables to store configuration such as:
 
 ---
 
-### 7. Lambda Layer
+### 6. Lambda Layer
 
 PyMySQL is packaged as a Lambda Layer to keep the deployment package lightweight.
 
@@ -208,7 +200,7 @@ PyMySQL is packaged as a Lambda Layer to keep the deployment package lightweight
 
 ---
 
-### 8. Amazon API Gateway
+### 7. Amazon API Gateway
 
 Amazon API Gateway exposes the application's REST API to external clients. The API is deployed using the **$default** stage and provides a public HTTPS endpoint that clients can use to submit new orders.
 
@@ -232,7 +224,7 @@ This endpoint accepts a JSON payload containing the customer name, product name,
 
 ---
 
-### 9. Amazon SNS Topic
+### 8. Amazon SNS Topic
 
 SNS publishes OrderCreated events.
 
@@ -240,7 +232,7 @@ SNS publishes OrderCreated events.
 
 ---
 
-### 10. Amazon SQS Queues
+### 9. Amazon SQS Queues
 
 Multiple queues subscribe to the SNS topic.
 
@@ -254,7 +246,7 @@ Example queues:
 
 ---
 
-### 11. SNS Subscriptions
+### 10. SNS Subscriptions
 
 Shows the SNS topic successfully connected to all SQS queues.
 
@@ -262,7 +254,7 @@ Shows the SNS topic successfully connected to all SQS queues.
 
 ---
 
-### 12. Successful Lambda Test
+### 11. Successful Lambda Test
 
 Lambda successfully inserts an order into Amazon RDS and publishes an event.
 
@@ -270,7 +262,7 @@ Lambda successfully inserts an order into Amazon RDS and publishes an event.
 
 ---
 
-### 13. API Test from PowerShell
+### 12. API Test from PowerShell
 
 The API is tested using PowerShell.
 
@@ -301,7 +293,7 @@ order_id: 3
 
 ---
 
-### 14. Database Verification
+### 13. Database Verification
 
 The order is successfully stored inside Amazon RDS.
 
@@ -321,7 +313,7 @@ Example:
 
 ---
 
-### 15. SQS Message
+### 14. SQS Message
 
 After Lambda publishes the event to SNS, the subscribed SQS queue receives the message.
 
